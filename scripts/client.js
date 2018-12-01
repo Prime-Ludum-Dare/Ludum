@@ -2,7 +2,8 @@ console.log('client.js loaded');
 
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
-
+const gravity = 20;
+const timeStep = 0.1;
 // let player = {
 //   x: 150,
 //   y: 150,
