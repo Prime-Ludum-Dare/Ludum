@@ -1,30 +1,30 @@
 const player = {
-    height: 20,
-    width: 20,
-    speed: 7,
-    X: 150,
-    Y: 150,
-    canvas: document.getElementById('mainCanvas'),
-    move: () => {
-        //handle movement
-        if (rightPressed && player.X < player.canvas.width - player.width) {
-            player.X += player.speed;
-        } else if (leftPressed && player.X > 0) {
-            player.X -= player.speed;
-        }
+  height: 20,
+  width: 20,
+  speed: 7,
+  X: 150,
+  Y: 150,
+  canvas: document.getElementById('mainCanvas'),
+  move: () => {
+    //handle movement
+    if (rightPressed && player.X < player.canvas.width - player.width) {
+      player.X += player.speed;
+    } else if (leftPressed && player.X > 0) {
+      player.X -= player.speed;
+    }
 
-        if (downPressed && player.Y < player.canvas.height - player.height) {
-            player.Y += player.speed;
-        } else if (upPressed && player.Y > 0) {
-            player.Y -= player.speed;
-        }
-    },
+    if (downPressed && player.Y < player.canvas.height - player.height) {
+      player.Y += player.speed;
+    } else if (upPressed && player.Y > 0) {
+      player.Y -= player.speed;
+    }
+  },
 
-    render: () => {
-        ctx.fillStyle = 'rgba(100,100,100,0.5)';
-        ctx.fillRect(player.X, player.Y, player.width, player.height);
-        player.move();
-    },
-}
+  render: () => {
+    ctx.fillStyle = 'rgba(255,0,0,1)';
+    ctx.fillRect(player.X, player.Y, player.width, player.height);
+    player.move();
+  },
+};
 
 worldList.push(player);

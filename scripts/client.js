@@ -3,13 +3,13 @@ console.log('client.js loaded');
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
-let player = {
-  x: 150,
-  y: 150,
-  width: 20,
-  height: 20,
-  speed: 7,
-};
+// let player = {
+//   x: 150,
+//   y: 150,
+//   width: 20,
+//   height: 20,
+//   speed: 7,
+// };
 
 let camera = {
   x: 0,
@@ -102,6 +102,7 @@ const draw = () => {
 
   // // draw the things
   // drawPlayer();
+  drawBackground();
   for (object of worldList) {
     object.render();
   }
