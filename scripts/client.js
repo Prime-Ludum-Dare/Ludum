@@ -3,17 +3,32 @@ console.log('client.js loaded');
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
-const playerHeight = 20;
-const playerWidth = 20;
-const playerSpeed = 7;
+let player = {
+  x: 150,
+  y: 150,
+  width: 20,
+  height: 20,
+  speed: 7,
+};
 
-let playerX = 150;
-let playerY = 150;
+let camera = {
+  x: 0,
+  y: 0,
+};
 
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
+
 let downPressed = false;
+
+const worldWidth = 1400;
+const worldHeight = 600;
+
+let background = new Image();
+background.src = 'resources/space_background.png';
+
+const worldList = [];
 
 const init = () => {
   // get the canvas so we can draw on it
@@ -49,28 +64,45 @@ keyUpHandler = event => {
 };
 
 const drawPlayer = () => {
-  ctx.fillStyle = 'rgba(100,100,100,0.5)';
-  ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
+  ctx.fillStyle = 'rgba(255,0,0,1)';
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+};
+
+const drawBackground = () => {
+  ctx.drawImage(
+    background,
+    camera.x,
+    camera.y,
+    canvas.width,
+    canvas.height,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 };
 
 const draw = () => {
-  // clear the screen
+  // // clear the screen
   ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
   ctx.fillRect(0, 0, 800, 600);
 
-  // handle movement
-  if (rightPressed && playerX < canvas.width - playerWidth) {
-    playerX += playerSpeed;
-  } else if (leftPressed && playerX > 0) {
-    playerX -= playerSpeed;
-  }
+  // // handle movement
+  // if (rightPressed && playerX < canvas.width - playerWidth) {
+  //   playerX += playerSpeed;
+  // } else if (leftPressed && playerX > 0) {
+  //   playerX -= playerSpeed;
+  // }
 
-  if (downPressed && playerY < canvas.height - playerHeight) {
-    playerY += playerSpeed;
-  } else if (upPressed && playerY > 0) {
-    playerY -= playerSpeed;
-  }
+  // if (downPressed && playerY < canvas.height - playerHeight) {
+  //   playerY += playerSpeed;
+  // } else if (upPressed && playerY > 0) {
+  //   playerY -= playerSpeed;
+  // }
 
-  // draw the things
-  drawPlayer();
+  // // draw the things
+  // drawPlayer();
+  for (object of worldList) {
+    object.render();
+  }
 };
