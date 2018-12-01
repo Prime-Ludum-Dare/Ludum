@@ -12,8 +12,8 @@ const ctx = canvas.getContext('2d');
 // };
 
 let camera = {
-  x: 0,
-  y: 0,
+  X: 0,
+  Y: 0,
 };
 
 let rightPressed = false;
@@ -22,8 +22,10 @@ let upPressed = false;
 
 let downPressed = false;
 
-const worldWidth = 1400;
-const worldHeight = 600;
+const world = {
+  width: 1400,
+  height: 600,
+};
 
 let background = new Image();
 background.src = 'resources/space_background.png';
@@ -63,16 +65,11 @@ keyUpHandler = event => {
   }
 };
 
-const drawPlayer = () => {
-  ctx.fillStyle = 'rgba(255,0,0,1)';
-  ctx.fillRect(player.x, player.y, player.width, player.height);
-};
-
 const drawBackground = () => {
   ctx.drawImage(
     background,
-    camera.x,
-    camera.y,
+    camera.X,
+    camera.Y,
     canvas.width,
     canvas.height,
     0,
@@ -99,6 +96,19 @@ const draw = () => {
   // } else if (upPressed && playerY > 0) {
   //   playerY -= playerSpeed;
   // }
+
+  // handle camera movement
+  if (camera.X !== player.X - canvas.width / 2) {
+    camera.X = player.X - canvas.width / 2;
+  }
+
+  if (camera.X < 0) {
+    camera.X = 0;
+  }
+
+  if (camera.X > world.width - canvas.width) {
+    camera.X = world.width - canvas.width;
+  }
 
   // // draw the things
   // drawPlayer();
