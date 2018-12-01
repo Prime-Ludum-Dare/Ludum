@@ -21,6 +21,8 @@ const player = {
   },
 
   render: () => {
+    let image = new Image();
+    image.src = 'resources/sprites/whtdragonscow.png';
     ctx.fillStyle = 'rgba(255,0,0,1)';
     ctx.fillRect(
       player.X - camera.X,
@@ -28,6 +30,7 @@ const player = {
       player.width,
       player.height
     );
+    ctx.drawImage(image, player.X - camera.X, player.Y - camera.Y);
     player.move();
   },
 };
