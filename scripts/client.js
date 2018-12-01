@@ -33,6 +33,7 @@ let background = new Image();
 background.src = 'resources/space_background.png';
 
 const worldList = [];
+const platformList = [];
 
 const init = () => {
   // get the canvas so we can draw on it
@@ -119,6 +120,9 @@ const draw = () => {
   // // draw the things
   // drawPlayer();
   drawBackground();
+  for (platform of platformList) {
+    platform.render();
+  }
   for (object of worldList) {
     object.render();
   }
