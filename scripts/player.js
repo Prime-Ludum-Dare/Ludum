@@ -7,13 +7,13 @@ const player = {
     canvas: document.getElementById('mainCanvas'),
     move: () => {
         //handle movement
-        if (rightPressed && player.X < 800 - player.width) {
+        if (rightPressed && player.X < player.canvas.width - player.width) {
             player.X += player.speed;
         } else if (leftPressed && player.X > 0) {
             player.X -= player.speed;
         }
 
-        if (downPressed && player.Y < 600 - player.height) {
+        if (downPressed && player.Y < player.canvas.height - player.height) {
             player.Y += player.speed;
         } else if (upPressed && player.Y > 0) {
             player.Y -= player.speed;
