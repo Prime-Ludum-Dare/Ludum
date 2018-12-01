@@ -3,18 +3,30 @@ console.log('client.js loaded');
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 
-const playerHeight = 20;
-const playerWidth = 20;
-const playerSpeed = 7;
+// let player = {
+//   x: 150,
+//   y: 150,
+//   width: 20,
+//   height: 20,
+//   speed: 7,
+// };
 
-let playerX = 150;
-let playerY = 150;
+let camera = {
+  x: 0,
+  y: 0,
+};
 
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
 
 let downPressed = false;
+
+const worldWidth = 1400;
+const worldHeight = 600;
+
+let background = new Image();
+background.src = 'resources/space_background.png';
 
 const worldList = [];
 
@@ -52,8 +64,22 @@ keyUpHandler = event => {
 };
 
 const drawPlayer = () => {
-  ctx.fillStyle = 'rgba(100,100,100,0.5)';
-  ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
+  ctx.fillStyle = 'rgba(255,0,0,1)';
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+};
+
+const drawBackground = () => {
+  ctx.drawImage(
+    background,
+    camera.x,
+    camera.y,
+    canvas.width,
+    canvas.height,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 };
 
 const draw = () => {
@@ -76,7 +102,8 @@ const draw = () => {
 
   // // draw the things
   // drawPlayer();
-  for(object of worldList){
+  drawBackground();
+  for (object of worldList) {
     object.render();
   }
 };
