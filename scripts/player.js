@@ -7,13 +7,13 @@ const player = {
   canvas: document.getElementById('mainCanvas'),
   move: () => {
     //handle movement
-    if (rightPressed && player.X < player.canvas.width - player.width) {
+    if (rightPressed && player.X < world.width - player.width) {
       player.X += player.speed;
     } else if (leftPressed && player.X > 0) {
       player.X -= player.speed;
     }
 
-    if (downPressed && player.Y < player.canvas.height - player.height) {
+    if (downPressed && player.Y < world.height - player.height) {
       player.Y += player.speed;
     } else if (upPressed && player.Y > 0) {
       player.Y -= player.speed;
@@ -22,7 +22,12 @@ const player = {
 
   render: () => {
     ctx.fillStyle = 'rgba(255,0,0,1)';
-    ctx.fillRect(player.X, player.Y, player.width, player.height);
+    ctx.fillRect(
+      player.X - camera.X,
+      player.Y - camera.Y,
+      player.width,
+      player.height
+    );
     player.move();
   },
 };
