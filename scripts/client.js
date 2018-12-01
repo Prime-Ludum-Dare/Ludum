@@ -14,6 +14,7 @@ const ctx = canvas.getContext('2d');
 let camera = {
   X: 0,
   Y: 0,
+  moveFieldWidth: 350,
 };
 
 let rightPressed = false;
@@ -98,15 +99,19 @@ const draw = () => {
   // }
 
   // handle camera movement
-  if (camera.X !== player.X - canvas.width / 2) {
-    camera.X = player.X - canvas.width / 2;
+  if (player.X > camera.X + canvas.width / 2 + camera.moveFieldWidth / 2) {
+    camera.X = player.X - canvas.width / 2 - camera.moveFieldWidth / 2;
+  }
+  if (player.X < camera.X + canvas.width / 2 - camera.moveFieldWidth / 2) {
+    camera.X = player.X - canvas.width / 2 + camera.moveFieldWidth / 2;
   }
 
+  // camera.X = player.X - canvas.width / 2;
+
+  // limiters
   if (camera.X < 0) {
     camera.X = 0;
-  }
-
-  if (camera.X > world.width - canvas.width) {
+  } else if (camera.X > world.width - canvas.width) {
     camera.X = world.width - canvas.width;
   }
 
