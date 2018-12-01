@@ -19,6 +19,7 @@ let camera = {
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
+
 let downPressed = false;
 
 const worldWidth = 1400;
@@ -26,6 +27,8 @@ const worldHeight = 600;
 
 let background = new Image();
 background.src = 'resources/space_background.png';
+
+const worldList = [];
 
 const init = () => {
   // get the canvas so we can draw on it
@@ -80,24 +83,26 @@ const drawBackground = () => {
 };
 
 const draw = () => {
-  // clear the screen
+  // // clear the screen
   ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
   ctx.fillRect(0, 0, 800, 600);
 
-  // handle movement
-  if (rightPressed && player.x < worldWidth - player.width) {
-    player.x += player.speed;
-  } else if (leftPressed && player.x > 0) {
-    player.x -= player.speed;
-  }
+  // // handle movement
+  // if (rightPressed && playerX < canvas.width - playerWidth) {
+  //   playerX += playerSpeed;
+  // } else if (leftPressed && playerX > 0) {
+  //   playerX -= playerSpeed;
+  // }
 
-  if (downPressed && player.y < worldHeight - player.height) {
-    player.y += player.speed;
-  } else if (upPressed && player.y > 0) {
-    player.y -= player.speed;
-  }
+  // if (downPressed && playerY < canvas.height - playerHeight) {
+  //   playerY += playerSpeed;
+  // } else if (upPressed && playerY > 0) {
+  //   playerY -= playerSpeed;
+  // }
 
-  // draw the things
-  drawBackground();
-  drawPlayer();
+  // // draw the things
+  // drawPlayer();
+  for (object of worldList) {
+    object.render();
+  }
 };
