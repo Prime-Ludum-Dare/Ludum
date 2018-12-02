@@ -21,17 +21,6 @@ const world = {
   height: 600,
 };
 
-// const background = {
-//   numberOfLayers: 4,
-//   layers: [],
-//   speedOfParallax: 0.1,
-// };
-
-// for (let i = 0; i < background.numberOfLayers; i++) {
-//   background.layers.push(new Image());
-//   background.layers[i].src = `resources/background/layers/${i}.png`;
-// }
-
 const worldList = [];
 const platformList = [];
 const collidableList = [];
@@ -69,37 +58,10 @@ keyUpHandler = event => {
   }
 };
 
-const drawBackground = () => {
-  for (let i = 0; i < background.layers.length; i++) {
-    let layerOffset = camera.X * ((i + 1) * 0.1);
-    while (layerOffset > canvas.width) {
-      layerOffset -= canvas.width;
-    }
-    // draw the one that would normally scroll with the screen
-    ctx.drawImage(
-      background.layers[i],
-      0 - layerOffset,
-      0,
-      canvas.width,
-      canvas.height
-    );
-    // draw the second copy; we alternate between these two
-    ctx.drawImage(
-      background.layers[i],
-      0 - layerOffset + canvas.width,
-      0,
-      canvas.width,
-      canvas.height
-    );
-  }
-};
-
 const draw = () => {
   // // clear the screen
   ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
   ctx.fillRect(0, 0, 800, 600);
-
-
 
   // handle camera movement
   if (player.X > camera.X + canvas.width / 2 + camera.moveFieldWidth / 2) {
@@ -109,8 +71,6 @@ const draw = () => {
     camera.X = player.X - canvas.width / 2 + camera.moveFieldWidth / 2;
   }
 
-  // camera.X = player.X - canvas.width / 2;
-
   // limiters
   if (camera.X < 0) {
     camera.X = 0;
@@ -119,8 +79,8 @@ const draw = () => {
   }
 
   // // draw the things
-  // drawPlayer();
   background.render();
+
   for (platform of platformList) {
     platform.render();
   }
