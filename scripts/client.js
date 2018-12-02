@@ -8,22 +8,18 @@ const timeStep = 0.1;
 let camera = {
   X: 0,
   Y: 0,
-  moveFieldWidth: 350,
+  moveFieldWidth: 300,
 };
 
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
-
 let downPressed = false;
 
 const world = {
-  width: 1400,
+  width: 12000,
   height: 600,
 };
-
-let background = new Image();
-background.src = 'resources/space_background.png';
 
 const worldList = [];
 const platformList = [];
@@ -62,26 +58,10 @@ keyUpHandler = event => {
   }
 };
 
-const drawBackground = () => {
-  ctx.drawImage(
-    background,
-    camera.X,
-    camera.Y,
-    canvas.width,
-    canvas.height,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-};
-
 const draw = () => {
   // // clear the screen
   ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
   ctx.fillRect(0, 0, 800, 600);
-
-
 
   // handle camera movement
   if (player.X > camera.X + canvas.width / 2 + camera.moveFieldWidth / 2) {
@@ -91,8 +71,6 @@ const draw = () => {
     camera.X = player.X - canvas.width / 2 + camera.moveFieldWidth / 2;
   }
 
-  // camera.X = player.X - canvas.width / 2;
-
   // limiters
   if (camera.X < 0) {
     camera.X = 0;
@@ -101,8 +79,8 @@ const draw = () => {
   }
 
   // // draw the things
-  // drawPlayer();
-  drawBackground();
+  background.render();
+
   for (platform of platformList) {
     platform.render();
   }

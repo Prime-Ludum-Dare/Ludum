@@ -16,8 +16,8 @@ playerSprites.right.push({ X: 97, Y: 97 });
 
 const player = {
   sprites: playerSprites,
-  height: 48,
-  width: 48,
+  height: 96,
+  width: 96,
   facingRight: true,
   animationFrame: 0,
   animationFrameMax: 2,
@@ -54,24 +54,15 @@ const player = {
   },
 
   render: () => {
-    // ctx.fillStyle = 'rgba(255,0,0,1)';
-    // ctx.fillRect(
-    //   player.X - camera.X,
-    //   player.Y - camera.Y,
-    //   player.width,
-    //   player.height
-    // );
-    image = new Image();
-    image.src = 'resources/sprites/whtdragonscow.png';
     let currentSprite = player.facingRight
-      ? playerSprites.left[player.animationFrame]
-      : playerSprites.right[player.animationFrame];
+      ? player.sprites.left[player.animationFrame]
+      : player.sprites.right[player.animationFrame];
     ctx.drawImage(
-      image,
+      player.sprites.image,
       currentSprite.X,
       currentSprite.Y,
-      48,
-      48,
+      47,
+      47,
       player.X - camera.X,
       player.Y - camera.Y,
       player.width,
@@ -100,10 +91,10 @@ const player = {
   fall: () => {
     if (player.falling) {
       player.velocity -= gravity * timeStep;
-        if (player.velocity < 0) {
-          player.velocity += player.float * player.velocity * player.velocity;
-          player.checkPlatforms();
-        }
+      if (player.velocity < 0) {
+        player.velocity += player.float * player.velocity * player.velocity;
+        player.checkPlatforms();
+      }
       if (player.falling && player.Y >= player.canvas.height - player.height) {
         player.land();
       }
@@ -122,9 +113,16 @@ const player = {
   },
 
   checkPlatforms: () => {
-    let i = findPlatformIntercept(player.Y + player.height, 0, platformList.length - 1);
+    let i = findPlatformIntercept(
+      player.Y + player.height,
+      0,
+      platformList.length - 1
+    );
     // let count = 0;
-    while (i < platformList.length && platformList[i].Y > player.Y + player.height) {
+    while (
+      i < platformList.length &&
+      platformList[i].Y > player.Y + player.height
+    ) {
       let plat = platformList[i];
       if (plat.Y < player.Y - player.velocity * timeStep + player.height) {
         let leftBound = plat.X - player.width / 2;
@@ -152,7 +150,7 @@ const player = {
 
   getHit: () => {
     console.log('was hit!');
-  }
+  },
 };
 
 function findPlatformIntercept(Y, lIndex, rIndex) {
