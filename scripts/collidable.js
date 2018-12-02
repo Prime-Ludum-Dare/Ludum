@@ -8,11 +8,8 @@ class collidable {
     }
 
     checkCollision() {
-        let xDistance = player.X - (this.X - camera.X) + (player.width + this.width) / 2;
-        let yDistance = player.Y - (this.Y - camera.Y) + (player.height + this.height) / 2;
-        let rDistance = xDistance * xDistance + yDistance * yDistance;
-        if (rDistance < 1000) {
-            player.getHit();
+        if (player.X + player.width > this.X && player.X < this.X + this.width && player.Y + player.height > this.Y && player.Y < this.Y + this.height) {
+            player.getHit()
         }
     }
 
@@ -28,4 +25,6 @@ class collidable {
     }
 }
 
-C1 = new collidable(300, 350, 10, 10);
+const C1 = new collidable(300, 350, 10, 10);
+const C2 = new collidable(500, 350, 10, 10);
+const C3 = new collidable(700, 210, 50, 50);
