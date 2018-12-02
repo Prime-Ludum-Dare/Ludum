@@ -45,6 +45,8 @@ buildLevel = () => {
   new Corpse(200, 310, 96, 96, false);
 
   new Boar(0);
+  new Boar(1);
+  new Wyvern(700, 200, 200, 150);
 };
 
 keyDownHandler = event => {
