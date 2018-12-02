@@ -124,7 +124,7 @@ const player = {
 
   checkPlatforms: () => {
     let i = findPlatformIntercept(player.Y, 0, platformList.length - 1);
-    while (i < platformList.length && platformList[i].Y < player.Y - player.velocity * timeStep && platformList[i].Y > player.Y) {
+    while (i < platformList.length && platformList[i].Y < player.Y - player.velocity * timeStep + player.height && platformList[i].Y > player.Y + player.height) {
       let plat = platformList[i];
       let leftBound = plat.X - plat.width / 2;
       let rightBound = plat.X + plat.width / 2;
