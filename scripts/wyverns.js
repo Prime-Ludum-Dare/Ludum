@@ -6,13 +6,13 @@ wyvernSprites = {
   
   wyvernSprites.image.src = 'resources/sprites/whtdragonswyvern.png';
   
-  wyvernSprites.left.push({ X: 0, Y: 49 });
-  wyvernSprites.left.push({ X: 49, Y: 49 });
-  wyvernSprites.left.push({ X: 97, Y: 49 });
+  wyvernSprites.left.push({ X: 0, Y: 64 });
+  wyvernSprites.left.push({ X: 96, Y: 64 });
+  wyvernSprites.left.push({ X: 192, Y: 64 });
   
-  wyvernSprites.right.push({ X: 0, Y: 97 });
-  wyvernSprites.right.push({ X: 49, Y: 97 });
-  wyvernSprites.right.push({ X: 97, Y: 97 });
+  wyvernSprites.right.push({ X: 0, Y: 128 });
+  wyvernSprites.right.push({ X: 96, Y: 128 });
+  wyvernSprites.right.push({ X: 192, Y: 128 });
   
   class Wyvern extends collidable {
     constructor(X, Y, hLength, vLength) {
@@ -22,11 +22,11 @@ wyvernSprites = {
       this.facingRight = true;
       this.ascending = false;
       this.animationFrame = 0;
-      this.animationFrameMax = 60;
+      this.animationFrameMax = 50;
       this.currentH = 0;
       this.currentV = 0;
       this.hSpeed = 1.5;
-      this.vSpeed = 0.2;
+      this.vSpeed = 0.5;
       this.sprites = wyvernSprites;
     }
   
@@ -65,14 +65,14 @@ wyvernSprites = {
     render() {
       this.move();
       let currentSprite = !this.facingRight
-        ? this.sprites.left[Math.round(this.animationFrame / 30)]
-        : this.sprites.right[Math.round(this.animationFrame / 30)];
+        ? this.sprites.left[Math.round(this.animationFrame / 25)]
+        : this.sprites.right[Math.round(this.animationFrame / 25)];
       ctx.drawImage(
         this.sprites.image,
         currentSprite.X,
         currentSprite.Y,
-        67,
-        67,
+        96,
+        64,
         this.X - camera.X,
         this.Y - camera.Y,
         this.width * 1.5,
