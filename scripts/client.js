@@ -41,6 +41,7 @@ buildLevel = () => {
   new Platform(1100, 300, 150);
 
   new Boar(1);
+  new Wyvern(700, 200, 200, 150);
 };
 
 keyDownHandler = event => {
