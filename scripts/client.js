@@ -28,16 +28,16 @@ const world = {
   height: 600,
 };
 
-const background = {
-  numberOfLayers: 4,
-  layers: [],
-  speedOfParallax: 0.1,
-};
+// const background = {
+//   numberOfLayers: 4,
+//   layers: [],
+//   speedOfParallax: 0.1,
+// };
 
-for (let i = 0; i < background.numberOfLayers; i++) {
-  background.layers.push(new Image());
-  background.layers[i].src = `resources/background/layers/${i}.png`;
-}
+// for (let i = 0; i < background.numberOfLayers; i++) {
+//   background.layers.push(new Image());
+//   background.layers[i].src = `resources/background/layers/${i}.png`;
+// }
 
 const worldList = [];
 const platformList = [];
@@ -98,66 +98,6 @@ const drawBackground = () => {
       canvas.height
     );
   }
-
-  // let bg3offsetX = camera.X * 0.05;
-  // let bg2offsetX = camera.X * 0.125;
-  // let bg1offsetX = camera.X * 0.25;
-  // let bg0offsetX = camera.X * 0.5;
-
-  // while (bg3offsetX > canvas.width) {
-  //   bg3offsetX -= canvas.width;
-  // }
-
-  // while (bg2offsetX > canvas.width) {
-  //   bg2offsetX -= canvas.width;
-  // }
-
-  // while (bg1offsetX > canvas.width) {
-  //   bg1offsetX -= canvas.width;
-  // }
-
-  // while (bg0offsetX > canvas.width) {
-  //   bg0offsetX -= canvas.width;
-  // }
-
-  // for (let layer of backgroundImages) {
-  // }
-
-  // ctx.drawImage(bgLayer3, 0 - bg3offsetX, 0, canvas.width, canvas.height);
-  // ctx.drawImage(
-  //   bgLayer3,
-  //   0 - bg3offsetX + canvas.width,
-  //   0,
-  //   canvas.width,
-  //   canvas.height
-  // );
-
-  // ctx.drawImage(bgLayer2, 0 - bg2offsetX, 0, canvas.width, canvas.height);
-  // ctx.drawImage(
-  //   bgLayer2,
-  //   0 - bg2offsetX + canvas.width,
-  //   0,
-  //   canvas.width,
-  //   canvas.height
-  // );
-
-  // ctx.drawImage(bgLayer1, 0 - bg1offsetX, 0, canvas.width, canvas.height);
-  // ctx.drawImage(
-  //   bgLayer1,
-  //   0 - bg1offsetX + canvas.width,
-  //   0,
-  //   canvas.width,
-  //   canvas.height
-  // );
-
-  // ctx.drawImage(bgLayer0, 0 - bg0offsetX, 0, canvas.width, canvas.height);
-  // ctx.drawImage(
-  //   bgLayer0,
-  //   0 - bg0offsetX + canvas.width,
-  //   0,
-  //   canvas.width,
-  //   canvas.height
-  // );
 };
 
 const draw = () => {
@@ -197,7 +137,7 @@ const draw = () => {
 
   // // draw the things
   // drawPlayer();
-  drawBackground();
+  background.render();
   for (platform of platformList) {
     platform.render();
   }
