@@ -29,6 +29,7 @@ const player = {
   Y: 150,
   falling: true,
   moving: false,
+  dying: false,
   platform: null,
   canvas: document.getElementById('mainCanvas'),
 
@@ -55,28 +56,30 @@ const player = {
   },
 
   render: () => {
-    let currentSprite = player.facingRight
-      ? player.sprites.left[player.animationFrame]
-      : player.sprites.right[player.animationFrame];
-    ctx.drawImage(
-      player.sprites.image,
-      currentSprite.X,
-      currentSprite.Y,
-      47,
-      47,
-      player.X - camera.X,
-      player.Y - camera.Y,
-      player.width,
-      player.height
-    );
-    player.move();
+    if (!player.dying) {
+      let currentSprite = player.facingRight
+        ? player.sprites.left[player.animationFrame]
+        : player.sprites.right[player.animationFrame];
+      ctx.drawImage(
+        player.sprites.image,
+        currentSprite.X,
+        currentSprite.Y,
+        47,
+        47,
+        player.X - camera.X,
+        player.Y - camera.Y,
+        player.width,
+        player.height
+      );
+      player.move();
 
-    if (player.moving) {
-      player.animationFrame++;
-    }
+      if (player.moving) {
+        player.animationFrame++;
+      }
 
-    if (player.animationFrame > player.animationFrameMax) {
-      player.animationFrame = 0;
+      if (player.animationFrame > player.animationFrameMax) {
+        player.animationFrame = 0;
+      }
     }
   },
 
@@ -151,10 +154,27 @@ const player = {
 
   getHit: () => {
     console.log('was hit!');
-    numberOfLives -= 1;
+    if (player.dying === false) {
+      player.dying = true;
+      numberOfLives -= 1;
+      new Corpse(
+        player.X,
+        player.Y,
+        player.height,
+        player.width,
+        player.facingRight
+      );
+      player.spawn();
+    }
   },
 
-  spawn: () => {},
+  spawn: () => {
+    console.log('spawn');
+    player.Y = -100;
+    player.dying = false;
+    player.falling = true;
+    player.fall();
+  },
 };
 
 function findPlatformIntercept(Y, lIndex, rIndex) {

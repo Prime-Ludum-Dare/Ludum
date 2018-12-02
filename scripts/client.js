@@ -37,15 +37,15 @@ const init = () => {
 
 buildLevel = () => {
   // note it is crucial that the platforms stay in order of largest Y to smallest.
-  new Platform(1100, 550, 200);
+  new PlatformWithBoar(1100, 550, 200);
   new Platform(400, 500, 200);
-  new Platform(1100, 300, 150);
+  new PlatformWithBoar(1100, 300, 150);
   new Corpse(100, 410, 96, 96, true);
   new Platform(700, 400, 100);
   new Corpse(200, 310, 96, 96, false);
 
-  new Boar(0);
-  new Boar(1);
+  // new Boar(0);
+  // new Boar(1);
   new Wyvern(700, 200, 200, 150);
   new Spikes(400, 575, 500, 25);
 };
