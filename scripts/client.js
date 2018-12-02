@@ -47,6 +47,7 @@ buildLevel = () => {
   // new Boar(0);
   // new Boar(1);
   new Wyvern(700, 200, 200, 150);
+  new Spikes(400, 575, 500, 25);
 };
 
 keyDownHandler = event => {
