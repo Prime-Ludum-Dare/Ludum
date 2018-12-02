@@ -21,7 +21,8 @@ const player = {
   facingRight: true,
   animationFrame: 0,
   animationFrameMax: 2,
-  speed: 7,
+  speed: 5,
+  jumpStrength: 80,
   velocity: 0,
   float: 0.0005,
   X: 150,
@@ -83,7 +84,7 @@ const player = {
     if (!player.falling) {
       player.Y -= 1;
       player.platform = null;
-      player.velocity += 100;
+      player.velocity += player.jumpStrength;
       player.falling = true;
     }
   },
