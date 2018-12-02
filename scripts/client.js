@@ -35,6 +35,8 @@ const init = () => {
   new Platform(700, 400, 100);
   platformList.push(new Corpse(200, 310, 96, 96, false));
   new Platform(1100, 300, 150);
+
+  new Boar(1);
 };
 
 keyDownHandler = event => {
