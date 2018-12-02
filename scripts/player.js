@@ -145,6 +145,10 @@ const player = {
       player.platform = null;
       player.falling = true;
     }
+  },
+
+  getHit: () => {
+    console.log('was hit!');
   }
 };
 
