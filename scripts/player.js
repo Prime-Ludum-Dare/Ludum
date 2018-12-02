@@ -54,24 +54,15 @@ const player = {
   },
 
   render: () => {
-    // ctx.fillStyle = 'rgba(255,0,0,1)';
-    // ctx.fillRect(
-    //   player.X - camera.X,
-    //   player.Y - camera.Y,
-    //   player.width,
-    //   player.height
-    // );
-    image = new Image();
-    image.src = 'resources/sprites/whtdragonscow.png';
     let currentSprite = player.facingRight
-      ? playerSprites.left[player.animationFrame]
-      : playerSprites.right[player.animationFrame];
+      ? player.sprites.left[player.animationFrame]
+      : player.sprites.right[player.animationFrame];
     ctx.drawImage(
-      image,
+      player.sprites.image,
       currentSprite.X,
       currentSprite.Y,
-      48,
-      48,
+      47,
+      47,
       player.X - camera.X,
       player.Y - camera.Y,
       player.width,
@@ -124,7 +115,10 @@ const player = {
 
   checkPlatforms: () => {
     let i = findPlatformIntercept(player.Y, 0, platformList.length - 1);
-    while (i < platformList.length && platformList[i].Y > player.Y + player.height) {
+    while (
+      i < platformList.length &&
+      platformList[i].Y > player.Y + player.height
+    ) {
       let plat = platformList[i];
       if (plat.Y < player.Y - player.velocity * timeStep + player.height) {
         let leftBound = plat.X - player.width / 2;
@@ -145,7 +139,7 @@ const player = {
       player.platform = null;
       player.falling = true;
     }
-  }
+  },
 };
 
 function findPlatformIntercept(Y, lIndex, rIndex) {

@@ -15,7 +15,7 @@ const timeStep = 0.1;
 let camera = {
   X: 0,
   Y: 0,
-  moveFieldWidth: 350,
+  moveFieldWidth: 300,
 };
 
 let rightPressed = false;
