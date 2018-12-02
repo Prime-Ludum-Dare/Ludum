@@ -19,7 +19,7 @@ class Platform {
 
 // note it is crucial that the platforms stay in order of largest Y to smallest.
 
-const P0 = new Platform(1100, 600, 200);
+const P0 = new Platform(1100, 550, 200);
 const P1 = new Platform(400, 500, 200);
 const P2 = new Platform(700, 400, 100);
 const P3 = new Platform(1100, 300, 150);

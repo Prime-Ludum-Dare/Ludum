@@ -127,8 +127,8 @@ const player = {
     while (i < platformList.length && platformList[i].Y > player.Y + player.height) {
       let plat = platformList[i];
       if (plat.Y < player.Y - player.velocity * timeStep + player.height) {
-        let leftBound = plat.X - plat.width / 2;
-        let rightBound = plat.X + plat.width / 2;
+        let leftBound = plat.X - player.width / 2;
+        let rightBound = plat.X + plat.width - player.width / 2;
         if (leftBound < player.X && rightBound > player.X) {
           i = platformList.length;
           player.land(plat);
@@ -139,8 +139,8 @@ const player = {
   },
 
   checkEdge: platform => {
-    let leftBound = platform.X - platform.width / 2;
-    let rightBound = platform.X + platform.width / 2;
+    let leftBound = platform.X - player.width / 2;
+    let rightBound = platform.X + platform.width - player.width / 2;
     if (player.X < leftBound || player.X > rightBound) {
       player.platform = null;
       player.falling = true;
