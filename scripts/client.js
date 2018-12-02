@@ -5,6 +5,8 @@ const ctx = canvas.getContext('2d');
 const gravity = 20;
 const timeStep = 0.1;
 
+let numberOfLives = 10;
+
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
@@ -19,12 +21,15 @@ const worldList = [];
 const platformList = [];
 const collidableList = [];
 
+let playerHUD;
+
 const init = () => {
   // get the canvas so we can draw on it
 
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
 
+  playerHUD = new HUD();
   buildLevel();
 
   setInterval(draw, 10);
@@ -32,14 +37,14 @@ const init = () => {
 
 buildLevel = () => {
   // note it is crucial that the platforms stay in order of largest Y to smallest.
-
   new Platform(1100, 550, 200);
   new Platform(400, 500, 200);
+  new Platform(1100, 300, 150);
   new Corpse(100, 410, 96, 96, true);
   new Platform(700, 400, 100);
   new Corpse(200, 310, 96, 96, false);
-  new Platform(1100, 300, 150);
 
+  new Boar(0);
   new Boar(1);
   new Wyvern(700, 200, 200, 150);
 };
@@ -73,6 +78,7 @@ const draw = () => {
 
   // // draw the things
   background.render();
+  playerHUD.render();
 
   for (platform of platformList) {
     platform.render();
@@ -83,4 +89,10 @@ const draw = () => {
   for (enemy of collidableList) {
     enemy.render();
   }
+};
+
+const sortPlatforms = () => {
+  platformList.sort((a, b) => {
+    return b.Y - a.Y;
+  });
 };

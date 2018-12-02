@@ -151,7 +151,10 @@ const player = {
 
   getHit: () => {
     console.log('was hit!');
+    numberOfLives -= 1;
   },
+
+  spawn: () => {},
 };
 
 function findPlatformIntercept(Y, lIndex, rIndex) {
