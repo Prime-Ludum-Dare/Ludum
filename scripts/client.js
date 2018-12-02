@@ -25,15 +25,19 @@ const init = () => {
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
 
-  setInterval(draw, 10);
+  buildLevel();
 
+  setInterval(draw, 10);
+};
+
+buildLevel = () => {
   // note it is crucial that the platforms stay in order of largest Y to smallest.
 
   new Platform(1100, 550, 200);
   new Platform(400, 500, 200);
-  platformList.push(new Corpse(100, 410, 96, 96, true));
+  new Corpse(100, 410, 96, 96, true);
   new Platform(700, 400, 100);
-  platformList.push(new Corpse(200, 310, 96, 96, false));
+  new Corpse(200, 310, 96, 96, false);
   new Platform(1100, 300, 150);
 
   new Boar(1);
