@@ -140,6 +140,13 @@ const player = {
       player.falling = true;
     }
   },
+<<<<<<< HEAD
+=======
+
+  getHit: () => {
+    console.log('was hit!');
+  }
+>>>>>>> master
 };
 
 function findPlatformIntercept(Y, lIndex, rIndex) {

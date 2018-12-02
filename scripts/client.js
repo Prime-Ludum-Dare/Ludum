@@ -4,13 +4,6 @@ const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 const gravity = 20;
 const timeStep = 0.1;
-// let player = {
-//   x: 150,
-//   y: 150,
-//   width: 20,
-//   height: 20,
-//   speed: 7,
-// };
 
 let camera = {
   X: 0,
@@ -41,6 +34,7 @@ const world = {
 
 const worldList = [];
 const platformList = [];
+const collidableList = [];
 
 const init = () => {
   // get the canvas so we can draw on it
@@ -105,18 +99,7 @@ const draw = () => {
   ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
   ctx.fillRect(0, 0, 800, 600);
 
-  // // handle movement
-  // if (rightPressed && playerX < canvas.width - playerWidth) {
-  //   playerX += playerSpeed;
-  // } else if (leftPressed && playerX > 0) {
-  //   playerX -= playerSpeed;
-  // }
 
-  // if (downPressed && playerY < canvas.height - playerHeight) {
-  //   playerY += playerSpeed;
-  // } else if (upPressed && playerY > 0) {
-  //   playerY -= playerSpeed;
-  // }
 
   // handle camera movement
   if (player.X > camera.X + canvas.width / 2 + camera.moveFieldWidth / 2) {
@@ -143,5 +126,8 @@ const draw = () => {
   }
   for (object of worldList) {
     object.render();
+  }
+  for (enemy of collidableList) {
+    enemy.render();
   }
 };
