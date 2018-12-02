@@ -21,7 +21,6 @@ let camera = {
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
-
 let downPressed = false;
 
 const world = {
@@ -29,15 +28,16 @@ const world = {
   height: 600,
 };
 
-let bgLayer0 = new Image();
-let bgLayer1 = new Image();
-let bgLayer2 = new Image();
-let bgLayer3 = new Image();
+const background = {
+  numberOfLayers: 4,
+  layers: [],
+  speedOfParallax: 0.1,
+};
 
-bgLayer0.src = 'resources/background/layers/0.png';
-bgLayer1.src = 'resources/background/layers/1.png';
-bgLayer2.src = 'resources/background/layers/2.png';
-bgLayer3.src = 'resources/background/layers/3.png';
+for (let i = 0; i < background.numberOfLayers; i++) {
+  background.layers.push(new Image());
+  background.layers[i].src = `resources/background/layers/${i}.png`;
+}
 
 const worldList = [];
 const platformList = [];
@@ -76,62 +76,88 @@ keyUpHandler = event => {
 };
 
 const drawBackground = () => {
-  let bg3offsetX = camera.X * 0.05;
-  let bg2offsetX = camera.X * 0.125;
-  let bg1offsetX = camera.X * 0.25;
-  let bg0offsetX = camera.X * 0.5;
-
-  while (bg3offsetX > canvas.width) {
-    bg3offsetX -= canvas.width;
+  for (let i = 0; i < background.layers.length; i++) {
+    let layerOffset = camera.X * ((i + 1) * 0.1);
+    while (layerOffset > canvas.width) {
+      layerOffset -= canvas.width;
+    }
+    // draw the one that would normally scroll with the screen
+    ctx.drawImage(
+      background.layers[i],
+      0 - layerOffset,
+      0,
+      canvas.width,
+      canvas.height
+    );
+    // draw the second copy; we alternate between these two
+    ctx.drawImage(
+      background.layers[i],
+      0 - layerOffset + canvas.width,
+      0,
+      canvas.width,
+      canvas.height
+    );
   }
 
-  while (bg2offsetX > canvas.width) {
-    bg2offsetX -= canvas.width;
-  }
+  // let bg3offsetX = camera.X * 0.05;
+  // let bg2offsetX = camera.X * 0.125;
+  // let bg1offsetX = camera.X * 0.25;
+  // let bg0offsetX = camera.X * 0.5;
 
-  while (bg1offsetX > canvas.width) {
-    bg1offsetX -= canvas.width;
-  }
+  // while (bg3offsetX > canvas.width) {
+  //   bg3offsetX -= canvas.width;
+  // }
 
-  while (bg0offsetX > canvas.width) {
-    bg0offsetX -= canvas.width;
-  }
+  // while (bg2offsetX > canvas.width) {
+  //   bg2offsetX -= canvas.width;
+  // }
 
-  ctx.drawImage(bgLayer3, 0 - bg3offsetX, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    bgLayer3,
-    0 - bg3offsetX + canvas.width,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  // while (bg1offsetX > canvas.width) {
+  //   bg1offsetX -= canvas.width;
+  // }
 
-  ctx.drawImage(bgLayer2, 0 - bg2offsetX, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    bgLayer2,
-    0 - bg2offsetX + canvas.width,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  // while (bg0offsetX > canvas.width) {
+  //   bg0offsetX -= canvas.width;
+  // }
 
-  ctx.drawImage(bgLayer1, 0 - bg1offsetX, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    bgLayer1,
-    0 - bg1offsetX + canvas.width,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  // for (let layer of backgroundImages) {
+  // }
 
-  ctx.drawImage(bgLayer0, 0 - bg0offsetX, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    bgLayer0,
-    0 - bg0offsetX + canvas.width,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  // ctx.drawImage(bgLayer3, 0 - bg3offsetX, 0, canvas.width, canvas.height);
+  // ctx.drawImage(
+  //   bgLayer3,
+  //   0 - bg3offsetX + canvas.width,
+  //   0,
+  //   canvas.width,
+  //   canvas.height
+  // );
+
+  // ctx.drawImage(bgLayer2, 0 - bg2offsetX, 0, canvas.width, canvas.height);
+  // ctx.drawImage(
+  //   bgLayer2,
+  //   0 - bg2offsetX + canvas.width,
+  //   0,
+  //   canvas.width,
+  //   canvas.height
+  // );
+
+  // ctx.drawImage(bgLayer1, 0 - bg1offsetX, 0, canvas.width, canvas.height);
+  // ctx.drawImage(
+  //   bgLayer1,
+  //   0 - bg1offsetX + canvas.width,
+  //   0,
+  //   canvas.width,
+  //   canvas.height
+  // );
+
+  // ctx.drawImage(bgLayer0, 0 - bg0offsetX, 0, canvas.width, canvas.height);
+  // ctx.drawImage(
+  //   bgLayer0,
+  //   0 - bg0offsetX + canvas.width,
+  //   0,
+  //   canvas.width,
+  //   canvas.height
+  // );
 };
 
 const draw = () => {

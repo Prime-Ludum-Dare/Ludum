@@ -16,8 +16,8 @@ playerSprites.right.push({ X: 97, Y: 97 });
 
 const player = {
   sprites: playerSprites,
-  height: 48,
-  width: 48,
+  height: 96,
+  width: 96,
   facingRight: true,
   animationFrame: 0,
   animationFrameMax: 2,
