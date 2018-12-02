@@ -99,13 +99,12 @@ const player = {
 
   fall: () => {
     if (player.falling) {
-      if (player.Y < player.canvas.height - player.height) {
-        player.velocity -= gravity * timeStep;
+      player.velocity -= gravity * timeStep;
         if (player.velocity < 0) {
           player.velocity += player.float * player.velocity * player.velocity;
           player.checkPlatforms();
         }
-      } else {
+      if (player.falling && player.Y >= player.canvas.height - player.height) {
         player.land();
       }
     }
@@ -123,7 +122,8 @@ const player = {
   },
 
   checkPlatforms: () => {
-    let i = findPlatformIntercept(player.Y, 0, platformList.length - 1);
+    let i = findPlatformIntercept(player.Y + player.height, 0, platformList.length - 1);
+    // let count = 0;
     while (i < platformList.length && platformList[i].Y > player.Y + player.height) {
       let plat = platformList[i];
       if (plat.Y < player.Y - player.velocity * timeStep + player.height) {
@@ -135,7 +135,10 @@ const player = {
         }
       }
       i++;
+      // im keeping a running tally of the number of platforms checked so that we can insure that only a few platforms are being considered every render
+      // count ++
     }
+    // console.log(count);
   },
 
   checkEdge: platform => {
