@@ -4,6 +4,7 @@ class Platform {
     this.Y = Y;
     this.width = width;
     platformList.push(this);
+    sortPlatforms();
   }
 
   render() {

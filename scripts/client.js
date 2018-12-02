@@ -37,15 +37,14 @@ const init = () => {
 
 buildLevel = () => {
   // note it is crucial that the platforms stay in order of largest Y to smallest.
-
   new Platform(1100, 550, 200);
   new Platform(400, 500, 200);
+  new Platform(1100, 300, 150);
   new Corpse(100, 410, 96, 96, true);
   new Platform(700, 400, 100);
   new Corpse(200, 310, 96, 96, false);
-  new Platform(1100, 300, 150);
 
-  new Boar(1);
+  new Boar(0);
 };
 
 keyDownHandler = event => {
@@ -88,4 +87,10 @@ const draw = () => {
   for (enemy of collidableList) {
     enemy.render();
   }
+};
+
+const sortPlatforms = () => {
+  platformList.sort((a, b) => {
+    return b.Y - a.Y;
+  });
 };

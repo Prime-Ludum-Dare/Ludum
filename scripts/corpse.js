@@ -12,6 +12,7 @@ class Corpse {
     };
     this.sprite.image.src = 'resources/sprites/deadcows.png';
     platformList.push(this);
+    sortPlatforms();
   }
 
   render() {
