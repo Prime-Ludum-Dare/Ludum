@@ -5,12 +5,6 @@ const ctx = canvas.getContext('2d');
 const gravity = 20;
 const timeStep = 0.1;
 
-let camera = {
-  X: 0,
-  Y: 0,
-  moveFieldWidth: 300,
-};
-
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
@@ -32,6 +26,15 @@ const init = () => {
   document.addEventListener('keyup', keyUpHandler, false);
 
   setInterval(draw, 10);
+
+  // note it is crucial that the platforms stay in order of largest Y to smallest.
+
+  new Platform(1100, 550, 200);
+  new Platform(400, 500, 200);
+  platformList.push(new Corpse(100, 410, 96, 96, true));
+  new Platform(700, 400, 100);
+  platformList.push(new Corpse(200, 310, 96, 96, false));
+  new Platform(1100, 300, 150);
 };
 
 keyDownHandler = event => {
@@ -59,24 +62,7 @@ keyUpHandler = event => {
 };
 
 const draw = () => {
-  // // clear the screen
-  ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
-  ctx.fillRect(0, 0, 800, 600);
-
-  // handle camera movement
-  if (player.X > camera.X + canvas.width / 2 + camera.moveFieldWidth / 2) {
-    camera.X = player.X - canvas.width / 2 - camera.moveFieldWidth / 2;
-  }
-  if (player.X < camera.X + canvas.width / 2 - camera.moveFieldWidth / 2) {
-    camera.X = player.X - canvas.width / 2 + camera.moveFieldWidth / 2;
-  }
-
-  // limiters
-  if (camera.X < 0) {
-    camera.X = 0;
-  } else if (camera.X > world.width - canvas.width) {
-    camera.X = world.width - canvas.width;
-  }
+  camera.move();
 
   // // draw the things
   background.render();
