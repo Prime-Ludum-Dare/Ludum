@@ -5,6 +5,8 @@ const ctx = canvas.getContext('2d');
 const gravity = 20;
 const timeStep = 0.1;
 
+let numberOfLives = 10;
+
 let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
@@ -19,12 +21,15 @@ const worldList = [];
 const platformList = [];
 const collidableList = [];
 
+let playerHUD;
+
 const init = () => {
   // get the canvas so we can draw on it
 
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
 
+  playerHUD = new HUD();
   buildLevel();
 
   setInterval(draw, 10);
@@ -72,6 +77,7 @@ const draw = () => {
 
   // // draw the things
   background.render();
+  playerHUD.render();
 
   for (platform of platformList) {
     platform.render();
