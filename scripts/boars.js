@@ -25,7 +25,7 @@ class Boar extends collidable {
     this.platform = plat;
     this.facingRight = false;
     this.animationFrame = 0;
-    this.animationFrameMax = 40;
+    this.animationFrameMax = 50;
     this.speed = 1;
     this.sprites = boarSprites;
   }
