@@ -22,7 +22,7 @@ const player = {
   width: 96,
   facingRight: true,
   animationFrame: 0,
-  animationFrameMax: 2,
+  animationFrameMax: 3,
   speed: 5,
   jumpStrength: 80,
   jumpReady: false,
