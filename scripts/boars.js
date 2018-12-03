@@ -9,10 +9,12 @@ boarSprites.image.src = 'resources/sprites/whtdragonswildboar.png';
 boarSprites.left.push({ X: 0, Y: 49 });
 boarSprites.left.push({ X: 49, Y: 49 });
 boarSprites.left.push({ X: 97, Y: 49 });
+boarSprites.left.push({ X: 49, Y: 49 });
 
 boarSprites.right.push({ X: 0, Y: 97 });
 boarSprites.right.push({ X: 49, Y: 97 });
 boarSprites.right.push({ X: 97, Y: 97 });
+boarSprites.right.push({ X: 49, Y: 97 });
 
 class Boar extends collidable {
   constructor(platformNumber) {

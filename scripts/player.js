@@ -9,6 +9,7 @@ playerSprites.image.src = 'resources/sprites/whtdragonscow.png';
 playerSprites.left.push({ X: 0, Y: 49 });
 playerSprites.left.push({ X: 49, Y: 49 });
 playerSprites.left.push({ X: 97, Y: 49 });
+playerSprites.left.push({ X: 49, Y: 49 });
 
 playerSprites.right.push({ X: 0, Y: 97 });
 playerSprites.right.push({ X: 49, Y: 97 });
@@ -27,8 +28,8 @@ const player = {
   glideReady: true,
   velocity: 0,
   float: 0.0005,
-  X: 150,
-  Y: 150,
+  X: 0,
+  Y: 0,
   falling: true,
   moving: false,
   dying: false,
@@ -38,18 +39,18 @@ const player = {
   move: () => {
     //handle movement
     player.moving = false;
-    if (rightPressed && player.X < world.width - player.width) {
+    if (keyPressed.right && player.X < world.width - player.width) {
       player.moving = true;
       player.facingRight = false;
       player.X += player.speed;
-    } else if (leftPressed && player.X > 0) {
+    } else if (keyPressed.left && player.X > 0) {
       player.moving = true;
       player.facingRight = true;
       player.X -= player.speed;
     }
     player.fall();
     player.Y -= player.velocity * timeStep;
-    if (upPressed) {
+    if (keyPressed.up) {
       player.jump();
     }
     if (player.platform != null) {
@@ -75,7 +76,7 @@ const player = {
       );
       player.move();
 
-      if (player.moving && !player.falling || player.float > 0.0005) {
+      if ((player.moving && !player.falling) || player.float > 0.0005) {
         player.animationFrame++;
       }
 
@@ -85,7 +86,7 @@ const player = {
     }
   },
 
-  jump: () => {    
+  jump: () => {
     if (player.jumpReady) {
       player.Y -= 1;
       player.platform = null;
@@ -93,14 +94,14 @@ const player = {
       player.falling = true;
       player.jumpReady = false;
     } else if (player.glideReady) {
-      player.float = 0.004
+      player.float = 0.004;
     }
   },
 
   fall: () => {
     if (player.falling) {
-      if (!upPressed) {
-        player.float = 0.0005
+      if (!keyPressed.up) {
+        player.float = 0.0005;
         player.glideReady = true;
       }
       player.velocity -= gravity * timeStep;
@@ -111,7 +112,7 @@ const player = {
       if (player.falling && player.Y >= player.canvas.height - player.height) {
         player.land();
       }
-    } else if (!upPressed) {
+    } else if (!keyPressed.up) {
       player.jumpReady = true;
     }
   },
@@ -119,7 +120,7 @@ const player = {
   land: (platform = null) => {
     player.falling = false;
     player.glideReady = false;
-    player.float = 0.0005
+    player.float = 0.0005;
     player.velocity = 0;
     if (platform != null) {
       player.Y = platform.Y - player.height;
@@ -182,8 +183,9 @@ const player = {
   },
 
   spawn: () => {
-    console.log('spawn');
-    player.Y = -100;
+    player.X = world.spawn.X;
+    player.Y = world.spawn.Y;
+    player.velocity = 0;
     player.dying = false;
     player.falling = true;
     player.jumpReady = false;
