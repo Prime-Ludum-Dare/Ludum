@@ -14,6 +14,7 @@ playerSprites.left.push({ X: 49, Y: 49 });
 playerSprites.right.push({ X: 0, Y: 97 });
 playerSprites.right.push({ X: 49, Y: 97 });
 playerSprites.right.push({ X: 97, Y: 97 });
+playerSprites.right.push({ X: 49, Y: 97 });
 
 const player = {
   sprites: playerSprites,
