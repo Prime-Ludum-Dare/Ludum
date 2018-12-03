@@ -1,6 +1,5 @@
 let spikesImage = new Image();
 spikesImage.src = "resources/textures/Jamie-clker-spikes.png";
-console.log(spikesImage);
 
 class Spikes extends collidable {
     constructor(X, Y, width, height) {
