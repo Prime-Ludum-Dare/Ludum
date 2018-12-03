@@ -75,7 +75,7 @@ const player = {
       );
       player.move();
 
-      if (player.moving) {
+      if (player.moving && !player.falling || player.float > 0.0005) {
         player.animationFrame++;
       }
 
@@ -119,6 +119,7 @@ const player = {
   land: (platform = null) => {
     player.falling = false;
     player.glideReady = false;
+    player.float = 0.0005
     player.velocity = 0;
     if (platform != null) {
       player.Y = platform.Y - player.height;
