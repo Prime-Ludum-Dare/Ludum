@@ -14,6 +14,16 @@ playerSprites.right.push({ X: 0, Y: 97 });
 playerSprites.right.push({ X: 49, Y: 97 });
 playerSprites.right.push({ X: 97, Y: 97 });
 
+function playAudio (id) {
+  let soundToPlay = document.getElementById(id);
+  soundToPlay.play();
+}
+
+function pauseAudio (id) {
+  let soundToPause = document.getElementById(id);
+  soundToPause.pause();
+}
+
 const player = {
   sprites: playerSprites,
   height: 96,
@@ -169,6 +179,8 @@ const player = {
     console.log('was hit!');
     if (player.dying === false) {
       player.dying = true;
+      playAudio('mooSound');
+      playAudio('deathSound')
       numberOfLives -= 1;
       new Corpse(
         player.X,
