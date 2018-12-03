@@ -4,6 +4,7 @@ class collidable {
     this.Y = Y;
     this.width = width;
     this.height = height;
+    this.marginTop = height / 2;
     collidableList.push(this);
   }
 
@@ -11,7 +12,7 @@ class collidable {
     if (
       player.X + player.width > this.X &&
       player.X < this.X + this.width &&
-      player.Y + player.height > this.Y &&
+      player.Y + player.height > this.Y + this.marginTop &&
       player.Y < this.Y + this.height
     ) {
       player.getHit();
