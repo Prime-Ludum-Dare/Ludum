@@ -33,7 +33,7 @@ const player = {
   facingRight: true,
   animationFrame: 0,
   animationDelay: 10,
-  animationFrameMax: 4 * 10 - 1,
+  animationFrameMax: 4 * 10 - 1, // this is some hacky hard-coding; we should really convert this to a class and use a constructor
   speed: 5,
   jumpStrength: 80,
   jumpReady: false,
