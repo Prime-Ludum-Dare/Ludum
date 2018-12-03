@@ -8,3 +8,6 @@
 - wolfbeast: whtdragon
 - mushroom: whtdragon
 - whyvern: whtdragon
+
+### Textures
+- spikes: Jamie

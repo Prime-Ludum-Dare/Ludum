@@ -23,6 +23,8 @@ const player = {
   animationFrameMax: 2,
   speed: 5,
   jumpStrength: 80,
+  jumpReady: false,
+  glideReady: true,
   velocity: 0,
   float: 0.0005,
   X: 150,
@@ -73,7 +75,7 @@ const player = {
       );
       player.move();
 
-      if (player.moving) {
+      if (player.moving && !player.falling || player.float > 0.0005) {
         player.animationFrame++;
       }
 
@@ -83,17 +85,24 @@ const player = {
     }
   },
 
-  jump: () => {
-    if (!player.falling) {
+  jump: () => {    
+    if (player.jumpReady) {
       player.Y -= 1;
       player.platform = null;
       player.velocity += player.jumpStrength;
       player.falling = true;
+      player.jumpReady = false;
+    } else if (player.glideReady) {
+      player.float = 0.004
     }
   },
 
   fall: () => {
     if (player.falling) {
+      if (!upPressed) {
+        player.float = 0.0005
+        player.glideReady = true;
+      }
       player.velocity -= gravity * timeStep;
       if (player.velocity < 0) {
         player.velocity += player.float * player.velocity * player.velocity;
@@ -102,11 +111,15 @@ const player = {
       if (player.falling && player.Y >= player.canvas.height - player.height) {
         player.land();
       }
+    } else if (!upPressed) {
+      player.jumpReady = true;
     }
   },
 
   land: (platform = null) => {
     player.falling = false;
+    player.glideReady = false;
+    player.float = 0.0005
     player.velocity = 0;
     if (platform != null) {
       player.Y = platform.Y - player.height;
@@ -173,6 +186,8 @@ const player = {
     player.Y = -100;
     player.dying = false;
     player.falling = true;
+    player.jumpReady = false;
+    player.glideReady = true;
     player.fall();
   },
 };
