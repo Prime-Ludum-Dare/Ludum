@@ -24,10 +24,11 @@ class Boar extends collidable {
     super(platX, platY, 60, 60);
     this.platform = plat;
     this.facingRight = false;
-    this.animationFrame = 0;
-    this.animationFrameMax = 50;
-    this.speed = 1;
     this.sprites = boarSprites;
+    this.animationFrame = 0;
+    this.animationDelay = 20;
+    this.animationFrameMax = this.sprites.left.length * this.animationDelay - 1;
+    this.speed = 1;
   }
 
   move() {
@@ -39,6 +40,7 @@ class Boar extends collidable {
       this.X -= this.speed;
     }
     this.animationFrame++;
+
     if (this.animationFrame > this.animationFrameMax) {
       this.animationFrame = 0;
     }
@@ -58,8 +60,10 @@ class Boar extends collidable {
   render() {
     this.move();
     let currentSprite = !this.facingRight
-      ? this.sprites.left[Math.round(this.animationFrame / 20)]
-      : this.sprites.right[Math.round(this.animationFrame / 20)];
+      ? this.sprites.left[Math.trunc(this.animationFrame / this.animationDelay)]
+      : this.sprites.right[
+          Math.trunc(this.animationFrame / this.animationDelay)
+        ];
     ctx.drawImage(
       this.sprites.image,
       currentSprite.X,

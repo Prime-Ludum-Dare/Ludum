@@ -16,12 +16,12 @@ playerSprites.right.push({ X: 49, Y: 97 });
 playerSprites.right.push({ X: 97, Y: 97 });
 playerSprites.right.push({ X: 49, Y: 97 });
 
-function playAudio (id) {
+function playAudio(id) {
   let soundToPlay = document.getElementById(id);
   soundToPlay.play();
 }
 
-function pauseAudio (id) {
+function pauseAudio(id) {
   let soundToPause = document.getElementById(id);
   soundToPause.pause();
 }
@@ -32,7 +32,8 @@ const player = {
   width: 96,
   facingRight: true,
   animationFrame: 0,
-  animationFrameMax: 3,
+  animationDelay: 10,
+  animationFrameMax: 4 * 10 - 1, // this is some hacky hard-coding; we should really convert this to a class and use a constructor
   speed: 5,
   jumpStrength: 80,
   jumpReady: false,
@@ -72,8 +73,12 @@ const player = {
   render: () => {
     if (!player.dying) {
       let currentSprite = player.facingRight
-        ? player.sprites.left[player.animationFrame]
-        : player.sprites.right[player.animationFrame];
+        ? player.sprites.left[
+            Math.trunc(player.animationFrame / player.animationDelay)
+          ]
+        : player.sprites.right[
+            Math.trunc(player.animationFrame / player.animationDelay)
+          ];
       ctx.drawImage(
         player.sprites.image,
         currentSprite.X,
@@ -182,7 +187,7 @@ const player = {
     if (player.dying === false) {
       player.dying = true;
       playAudio('mooSound');
-      playAudio('deathSound')
+      playAudio('deathSound');
       numberOfLives -= 1;
       new Corpse(
         player.X,

@@ -14,11 +14,6 @@ let keyPressed = {
   left: false,
 };
 
-// let rightPressed = false;
-// let leftPressed = false;
-// let upPressed = false;
-// let downPressed = false;
-
 const world = {
   spawn: {
     X: 100,
