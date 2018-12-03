@@ -14,11 +14,6 @@ let keyPressed = {
   left: false,
 };
 
-// let rightPressed = false;
-// let leftPressed = false;
-// let upPressed = false;
-// let downPressed = false;
-
 const world = {
   spawn: {
     X: 100,
@@ -56,7 +51,7 @@ buildLevel = () => {
   new Platform(700, 400, 100);
 
   new Wyvern(700, 200, 200, 150);
-  new Spikes(400, 575, 500, 25);
+  // new Spikes(400, 575, 500, 25);
 };
 
 keyDownHandler = event => {

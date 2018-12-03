@@ -23,13 +23,14 @@ class Wyvern extends collidable {
     this.vLength = vLength;
     this.facingRight = true;
     this.ascending = false;
+    this.sprites = wyvernSprites;
     this.animationFrame = 0;
-    this.animationFrameMax = 50;
+    this.animationDelay = 10;
+    this.animationFrameMax = this.sprites.left.length * this.animationDelay - 1;
     this.currentH = 0;
     this.currentV = 0;
     this.hSpeed = 1.5;
     this.vSpeed = 0.5;
-    this.sprites = wyvernSprites;
   }
 
   move() {
@@ -67,8 +68,10 @@ class Wyvern extends collidable {
   render() {
     this.move();
     let currentSprite = !this.facingRight
-      ? this.sprites.left[Math.round(this.animationFrame / 25)]
-      : this.sprites.right[Math.round(this.animationFrame / 25)];
+      ? this.sprites.left[Math.trunc(this.animationFrame / this.animationDelay)]
+      : this.sprites.right[
+          Math.trunc(this.animationFrame / this.animationDelay)
+        ];
     ctx.drawImage(
       this.sprites.image,
       currentSprite.X,
