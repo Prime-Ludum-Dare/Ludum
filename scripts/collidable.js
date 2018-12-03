@@ -10,10 +10,10 @@ class collidable {
 
   checkCollision() {
     if (
-      player.X + player.width > this.X &&
-      player.X < this.X + this.width &&
-      player.Y + player.height > this.Y + this.marginTop &&
-      player.Y < this.Y + this.height
+      player.X + player.width - player.graceMargin > this.X &&
+      player.X < this.X + this.width - player.graceMargin &&
+      player.Y + player.height - player.graceMargin > this.Y + this.marginTop &&
+      player.Y < this.Y + this.height - player.graceMargin
     ) {
       player.getHit();
     }

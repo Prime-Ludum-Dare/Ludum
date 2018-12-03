@@ -44,6 +44,7 @@ const player = {
   falling: true,
   moving: false,
   dying: false,
+  graceMargin: 10,
   platform: null,
   canvas: document.getElementById('mainCanvas'),
 
@@ -142,30 +143,25 @@ const player = {
   },
 
   checkPlatforms: () => {
-    let i = findPlatformIntercept(
-      player.Y + player.height,
-      0,
-      platformList.length - 1
-    );
-    // let count = 0;
+    let i = 0//findPlatformIntercept(
+      //player.Y + player.height,
+      //0,
+      //platformList.length - 1
+    //);
     while (
-      i < platformList.length &&
-      platformList[i].Y > player.Y + player.height
+      i < platformList.length
     ) {
       let plat = platformList[i];
-      if (plat.Y < player.Y - player.velocity * timeStep + player.height) {
-        let leftBound = plat.X - player.width / 2;
-        let rightBound = plat.X + plat.width - player.width / 2;
+      if (platformList[i].Y > player.Y + player.height && plat.Y < player.Y - player.velocity * timeStep + player.height) {
+        let leftBound = plat.X - player.width;
+        let rightBound = plat.X + plat.width;
         if (leftBound < player.X && rightBound > player.X) {
           i = platformList.length;
           player.land(plat);
         }
       }
       i++;
-      // im keeping a running tally of the number of platforms checked so that we can insure that only a few platforms are being considered every render
-      // count ++
     }
-    // console.log(count);
   },
 
   checkEdge: platform => {
@@ -185,8 +181,8 @@ const player = {
       playAudio('deathSound')
       numberOfLives -= 1;
       new Corpse(
-        player.X,
-        player.Y,
+        player.X + 10,
+        player.Y - 5,
         player.height,
         player.width,
         player.facingRight

@@ -50,13 +50,14 @@ const init = () => {
 
 buildLevel = () => {
   // note it is crucial that the platforms stay in order of largest Y to smallest.
-  new PlatformWithBoar(1100, 550, 200);
+  new PlatformWithBoar(1100, 550, 300);
   new Platform(400, 500, 200);
-  new PlatformWithBoar(1100, 300, 150);
+  new PlatformWithBoar(1100, 250, 250);
   new Platform(700, 400, 100);
 
   new Wyvern(700, 200, 200, 150);
   new Spikes(400, 575, 500, 25);
+  new Spikes(1500, 575, 1000, 25);
 };
 
 keyDownHandler = event => {
