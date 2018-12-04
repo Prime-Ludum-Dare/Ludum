@@ -16,12 +16,12 @@ playerSprites.right.push({ X: 49, Y: 97 });
 playerSprites.right.push({ X: 97, Y: 97 });
 playerSprites.right.push({ X: 49, Y: 97 });
 
-function playAudio (id) {
+function playAudio(id) {
   let soundToPlay = document.getElementById(id);
   soundToPlay.play();
 }
 
-function pauseAudio (id) {
+function pauseAudio(id) {
   let soundToPause = document.getElementById(id);
   soundToPause.pause();
 }
@@ -61,7 +61,6 @@ const player = {
       player.X -= player.speed;
     }
     player.fall();
-    player.Y -= player.velocity * timeStep;
     if (keyPressed.up) {
       player.jump();
     }
@@ -112,6 +111,7 @@ const player = {
 
   fall: () => {
     if (player.falling) {
+      player.Y -= player.velocity * timeStep;
       if (!keyPressed.up) {
         player.float = 0.0005;
         player.glideReady = true;
@@ -144,9 +144,9 @@ const player = {
 
   checkPlatforms: () => {
     let i = 0//findPlatformIntercept(
-      //player.Y + player.height,
-      //0,
-      //platformList.length - 1
+    //player.Y + player.height,
+    //0,
+    //platformList.length - 1
     //);
     while (
       i < platformList.length
@@ -165,11 +165,13 @@ const player = {
   },
 
   checkEdge: platform => {
-    let leftBound = platform.X - player.width / 2;
-    let rightBound = platform.X + platform.width - player.width / 2;
-    if (player.X < leftBound || player.X > rightBound) {
+    let leftBound = platform.X;
+    let rightBound = platform.X + platform.width;
+    if (player.X + player.width < leftBound || player.X > rightBound) {
       player.platform = null;
       player.falling = true;
+      player.Y -= 1
+      player.velocity += 20;
     }
   },
 
@@ -181,8 +183,8 @@ const player = {
       playAudio('deathSound')
       numberOfLives -= 1;
       new Corpse(
-        player.X + 10,
-        player.Y - 5,
+        player.X,
+        player.Y - 8,
         player.height,
         player.width,
         player.facingRight

@@ -1,7 +1,7 @@
 class Corpse {
   constructor(X, Y, height, width, facingRight = true) {
     (this.X = X), (this.Y = Y), (this.height = height);
-    this.width = width;
+    this.width = width + 15;
     this.facingRight = facingRight;
     this.sprite = {
       image: new Image(),
@@ -24,7 +24,7 @@ class Corpse {
       47,
       this.X - camera.X,
       this.Y,
-      this.width,
+      this.width - 15,
       this.height
     );
   }
