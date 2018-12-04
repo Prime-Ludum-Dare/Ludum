@@ -200,17 +200,18 @@ const player = {
   },
 
   spawn: () => {
-      player.X = world.spawn.X;
-      player.Y = world.spawn.Y;
-      player.velocity = 0;
-      player.dying = false;
-      player.falling = true;
-      player.jumpReady = false;
-      player.glideReady = true;
-      player.fall();
-      if(numberOfLives === 0){
-        looseGame();
-      }
+    player.X = world.spawn.X;
+    player.Y = world.spawn.Y;
+    player.velocity = 0;
+    player.dying = false;
+    player.falling = true;
+    player.jumpReady = false;
+    player.glideReady = true;
+    player.fall();
+    if (numberOfLives === 0) {
+      player.dying = true;
+      loseGame();
+    }
   },
 };
 
