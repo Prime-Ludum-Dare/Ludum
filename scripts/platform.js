@@ -9,10 +9,10 @@ class Platform {
     this.height = 32;
     this.spriteWidth = 32;
     let thisPlatform = platformList.push(this);
-    sortPlatforms();
     if (hasBoar) {
       new Boar(thisPlatform - 1);
     }
+    sortPlatforms();
   }
 
   render() {
