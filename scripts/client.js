@@ -29,6 +29,14 @@ const collidableList = [];
 
 let playerHUD;
 
+function winGame () {
+  alert('Yay, you won! Congratulations!');
+}
+
+function looseGame () {
+  alert('Oh no! You are out of cows! Reload to try again.');
+}
+
 const init = () => {
   // get the canvas so we can draw on it
 
