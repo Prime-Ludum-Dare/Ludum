@@ -182,21 +182,21 @@ const player = {
   },
 
   getHit: () => {
-    // console.log('was hit!');
-    // if (player.dying === false) {
-    //   player.dying = true;
-    //   playAudio('mooSound');
-    //   playAudio('deathSound');
-    //   numberOfLives -= 1;
-    //   new Corpse(
-    //     player.X,
-    //     player.Y - 8,
-    //     player.height,
-    //     player.width,
-    //     player.facingRight
-    //   );
-    //   player.spawn();
-    // }
+    console.log('was hit!');
+    if (player.dying === false) {
+      player.dying = true;
+      playAudio('mooSound');
+      playAudio('deathSound');
+      numberOfLives -= 1;
+      new Corpse(
+        player.X,
+        player.Y - 8,
+        player.height,
+        player.width,
+        player.facingRight
+      );
+      player.spawn();
+    }
   },
 
   spawn: () => {
@@ -209,6 +209,7 @@ const player = {
     player.glideReady = true;
     player.fall();
     if (numberOfLives === 0) {
+      player.dying = true;
       loseGame();
     }
   },
