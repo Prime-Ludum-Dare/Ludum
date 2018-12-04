@@ -57,11 +57,13 @@ buildLevel = () => {
   new PlatformWithBoar(1100, 250, 250);
   new Platform(700, 400, 100);
 
-  new Wyvern(700, 200, 200, 150);
+  new Wyvern(700, 200, 300, 150);
   new Spikes(400, 575, 500, 25);
-  new Spikes(1500, 575, 1000, 25);
-
-  new Goal(400, 300);
+  new Spikes(1500, 575, 2500, 25);
+  new PlatformWithBoar(2550, 400, 500);
+  new Wyvern(2600, 100, 400, 100);
+  new Platform(3200, 300, 400)
+  new Goal(4500, 500);
 };
 
 keyDownHandler = event => {
