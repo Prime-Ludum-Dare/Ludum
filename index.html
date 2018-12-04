@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="styles.css" />
+    <title>Ludum Dare</title>
+  </head>
 
-  <title>Ludum Dare</title>
-</head>
-
-<body onLoad="init();">
-  <div class="container">
-    <!-- <center><h1>Ludum Dare Project</h1></center> -->
-    <canvas id="mainCanvas" width="800" height="600"></canvas>
-  </div>
-  <audio src="resources/sounds/Single Cow-SoundBible.com-2051754137-BuffBill84.mp3" id="mooSound" type="audio/mpeg"></audio>
-  <audio src="resources/sounds/Jump-SoundBible.com-1007297584-snottyboy.mp3" id="jumpSound" type="audio/mpeg"></audio>
-  <audio src="resources/sounds/Bone Crushing.mp3-SoundBible.com-537581287-Mike Koenig.mp3" id="deathSound" type="audio/mpeg"></audio>
-</body>
-<script src="./scripts/client.js"></script>
-<script src="./scripts/camera.js"></script>
-<script src="./scripts/hud.js"></script>
-<script src="./scripts/background.js"></script>
-<script src="./scripts/platform.js"></script>
-<script src="./scripts/player.js"></script>
-<script src="./scripts/collidable.js"></script>
-<script src="./scripts/boars.js"></script>
-<script src="./scripts/wyverns.js"></script>
-<script src="./scripts/corpse.js"></script>
-<script src="./scripts/spikes.js"></script>
-
+  <body onLoad="init();">
+    <div class="container">
+      <!-- <center><h1>Ludum Dare Project</h1></center> -->
+      <canvas id="mainCanvas" width="800" height="600"></canvas>
+    </div>
+    <audio
+      src="resources/sounds/Single Cow-SoundBible.com-2051754137-BuffBill84.mp3"
+      id="mooSound"
+      type="audio/mpeg"
+    ></audio>
+    <audio
+      src="resources/sounds/Jump-SoundBible.com-1007297584-snottyboy.mp3"
+      id="jumpSound"
+      type="audio/mpeg"
+    ></audio>
+    <audio
+      src="resources/sounds/Bone Crushing.mp3-SoundBible.com-537581287-Mike Koenig.mp3"
+      id="deathSound"
+      type="audio/mpeg"
+    ></audio>
+  </body>
+  <script src="./scripts/client.js"></script>
+  <script src="./scripts/camera.js"></script>
+  <script src="./scripts/hud.js"></script>
+  <script src="./scripts/background.js"></script>
+  <script src="./scripts/platform.js"></script>
+  <script src="./scripts/player.js"></script>
+  <script src="./scripts/collidable.js"></script>
+  <script src="./scripts/boars.js"></script>
+  <script src="./scripts/wyverns.js"></script>
+  <script src="./scripts/corpse.js"></script>
+  <script src="./scripts/spikes.js"></script>
+  <script src="./scripts/goal.js"></script>
 </html>

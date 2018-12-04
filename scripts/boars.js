@@ -77,4 +77,8 @@ class Boar extends collidable {
     );
     this.checkCollision();
   }
+
+  doHit() {
+    player.getHit();
+  }
 }

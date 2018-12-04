@@ -148,16 +148,17 @@ const player = {
   },
 
   checkPlatforms: () => {
-    let i = 0//findPlatformIntercept(
+    let i = 0; //findPlatformIntercept(
     //player.Y + player.height,
     //0,
     //platformList.length - 1
     //);
-    while (
-      i < platformList.length
-    ) {
+    while (i < platformList.length) {
       let plat = platformList[i];
-      if (platformList[i].Y > player.Y + player.height && plat.Y < player.Y - player.velocity * timeStep + player.height) {
+      if (
+        platformList[i].Y > player.Y + player.height &&
+        plat.Y < player.Y - player.velocity * timeStep + player.height
+      ) {
         let leftBound = plat.X - player.width;
         let rightBound = plat.X + plat.width;
         if (leftBound < player.X && rightBound > player.X) {
@@ -175,7 +176,7 @@ const player = {
     if (player.X + player.width < leftBound || player.X > rightBound) {
       player.platform = null;
       player.falling = true;
-      player.Y -= 1
+      player.Y -= 1;
       player.velocity += 20;
     }
   },

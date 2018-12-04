@@ -45,7 +45,6 @@ const init = () => {
 
   playerHUD = new HUD();
   buildLevel();
-
   player.spawn();
 
   setInterval(draw, 10);
@@ -61,6 +60,8 @@ buildLevel = () => {
   new Wyvern(700, 200, 200, 150);
   new Spikes(400, 575, 500, 25);
   new Spikes(1500, 575, 1000, 25);
+
+  new Goal(400, 300);
 };
 
 keyDownHandler = event => {
@@ -109,4 +110,16 @@ const sortPlatforms = () => {
   platformList.sort((a, b) => {
     return b.Y - a.Y;
   });
+};
+
+const winTheGame = () => {
+  alert('You Escaped! Congrats!');
+  numberOfLives = 10;
+  player.spawn();
+  keyPressed = {
+    up: false,
+    down: false,
+    right: false,
+    left: false,
+  };
 };
