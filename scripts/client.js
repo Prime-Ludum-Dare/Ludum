@@ -29,11 +29,19 @@ const collidableList = [];
 
 let playerHUD;
 
-function winGame () {
+function winGame() {
   alert('Yay, you won! Congratulations!');
+  numberOfLives = 10;
+  player.spawn();
+  keyPressed = {
+    up: false,
+    down: false,
+    right: false,
+    left: false,
+  };
 }
 
-function looseGame () {
+function loseGame() {
   alert('Oh no! You are out of cows! Reload to try again.');
 }
 
@@ -61,7 +69,7 @@ buildLevel = () => {
   new Spikes(400, 575, 500, 25);
   new Spikes(1500, 575, 1000, 25);
 
-  new Goal(400, 300);
+  new Goal(11400, 408);
 };
 
 keyDownHandler = event => {
@@ -91,10 +99,9 @@ keyUpHandler = event => {
 const draw = () => {
   camera.move();
 
-  // // draw the things
   background.render();
-  playerHUD.render();
 
+  // // draw the things
   for (platform of platformList) {
     platform.render();
   }
@@ -104,22 +111,12 @@ const draw = () => {
   for (enemy of collidableList) {
     enemy.render();
   }
+
+  playerHUD.render();
 };
 
 const sortPlatforms = () => {
   platformList.sort((a, b) => {
     return b.Y - a.Y;
   });
-};
-
-const winTheGame = () => {
-  alert('You Escaped! Congrats!');
-  numberOfLives = 10;
-  player.spawn();
-  keyPressed = {
-    up: false,
-    down: false,
-    right: false,
-    left: false,
-  };
 };

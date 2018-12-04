@@ -1,7 +1,7 @@
 const camera = {
   X: 0,
   Y: 0,
-  moveFieldWidth: 250,
+  moveFieldWidth: 150,
 
   move: () => {
     // handle camera movement
