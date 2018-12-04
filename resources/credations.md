@@ -1,6 +1,7 @@
 ## Credits owed to makers of resources
 
 ### Sprites
+
 - ahriman: whtdragon
 - yak: whtdragon
 - wildboar: whtdragon
@@ -10,4 +11,6 @@
 - whyvern: whtdragon
 
 ### Textures
+
 - spikes: Jamie
+- platform: Amir027

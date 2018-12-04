@@ -1,8 +1,13 @@
+let platformImage = new Image();
+platformImage.src = './resources/textures/platform.png';
+
 class Platform {
   constructor(X, Y, width, hasBoar = false) {
     this.X = X;
     this.Y = Y;
     this.width = width;
+    this.height = 32;
+    this.spriteWidth = 32;
     let thisPlatform = platformList.push(this);
     sortPlatforms();
     if (hasBoar) {
@@ -11,8 +16,13 @@ class Platform {
   }
 
   render() {
-    ctx.fillStyle = 'rgba(100,255,100,1)';
-    ctx.fillRect(this.X - camera.X, this.Y - camera.Y, this.width, 5);
+    for (let offset = 0; offset < this.width; offset += this.spriteWidth) {
+      ctx.drawImage(
+        platformImage,
+        this.X - camera.X + offset,
+        this.Y - camera.Y
+      );
+    }
   }
 }
 
