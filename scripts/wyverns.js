@@ -85,4 +85,8 @@ class Wyvern extends collidable {
     );
     this.checkCollision();
   }
+
+  doHit() {
+    player.getHit();
+  }
 }

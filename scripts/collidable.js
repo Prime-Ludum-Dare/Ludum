@@ -15,7 +15,7 @@ class collidable {
       player.Y + player.height - player.graceMargin > this.Y + this.marginTop &&
       player.Y < this.Y + this.height - player.graceMargin
     ) {
-      player.getHit();
+      this.doHit();
     }
   }
 
@@ -24,4 +24,6 @@ class collidable {
     ctx.fillRect(this.X - camera.X, this.Y - camera.Y, this.width, this.height);
     this.checkCollision();
   }
+
+  doHit() {}
 }
