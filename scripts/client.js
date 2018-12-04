@@ -19,7 +19,7 @@ const world = {
     X: 100,
     Y: 400,
   },
-  width: 12000,
+  width: 5000,
   height: 600,
 };
 
@@ -69,9 +69,8 @@ buildLevel = () => {
   new Spikes(1500, 575, 2500, 25);
   new PlatformWithBoar(2550, 400, 500);
   new Wyvern(2600, 100, 400, 100);
-  new Platform(3200, 300, 400)
-  new Goal(11400, 408);
-
+  new Platform(3200, 300, 400);
+  new Goal(4400, 408);
 };
 
 keyDownHandler = event => {
